@@ -1,5 +1,7 @@
+# Lista de Ejercicios Prácticos en lenguaje CSharp
 
-<details><summary>📖 Ejercicios Organizados por Nivel</summary>
+Pequeños retos y soluciones para reforzar mis conocimientos.
+
 
 ## 🔹 NIVEL BÁSICO (20 Ejercicios)
 Conceptos fundamentales - Ideal para principiantes

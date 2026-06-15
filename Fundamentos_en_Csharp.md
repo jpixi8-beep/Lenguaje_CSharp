@@ -1,7 +1,5 @@
 # Fundamentos Básicos de C#
 
-<details><summary>Marco Teórico</summary>
-
 <details><summary>0.- Qué es C#?</summary>
 
 C# es un lenguaje de programación moderno, orientado a objetos y desarrollado por Microsoft como parte de la plataforma .NET.
@@ -6236,7 +6234,3 @@ miCoche.Conducir();
 
 
 </details>
-
-</details>
-
----

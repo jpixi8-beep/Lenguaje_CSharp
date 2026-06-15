@@ -3,7 +3,7 @@
 Este repositorio contiene acceso a 
 
 - **[Fundamentos de programacion](Fundamentos_en_Csharp.md)**: sintaxis, lógica, estructuras básicas y conceptos clave.
-- **[Ejercicios prácticos](/Csharp/Ejercicios/Ejercicios_Practicos_Lista.md)**: pequeños retos y soluciones para reforzar lo aprendido.
+- **[Ejercicios prácticos](Ejercicios/Ejercicios_Practicos_Lista.md)**: pequeños retos y soluciones para reforzar lo aprendido.
 - **[Proyectos](#-proyectos-csharp)**: aplicaciones y mini sistemas que muestran como resuelvo problematicas del mundo real.
 
 
