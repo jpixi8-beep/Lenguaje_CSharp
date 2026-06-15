@@ -1,4 +1,4 @@
-# Lenguaje C #
+# Lenguaje CSharp (C#)
 
 Este repositorio contiene acceso a 
 
