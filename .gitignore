@@ -1,0 +1,21 @@
+# Build
+bin/
+obj/
+*.exe
+*.dll
+
+# IDE
+.vs/
+*.user
+*.suo
+*.cache
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*~
+
+# OS
+.DS_Store
+Thumbs.db
