@@ -1,0 +1,25 @@
+@model EncuestasApp.Models.Encuesta
+
+<section class="section">
+    <div class="container">
+        <h1 class="title has-text-light">Votar en: @Model.Titulo</h1>
+
+        <form asp-action="VotarPost" method="post">
+            <div class="field">
+                @foreach (var opcion in Model.Opciones)
+                {
+                    <div class="control">
+                        <label class="radio has-text-light">
+                            <input type="radio" name="opcionId" value="@opcion.Id" />
+                            @opcion.Texto
+                        </label>
+                    </div>
+                }
+            </div>
+
+            <div class="control mt-3">
+                <button type="submit" class="button is-success">Enviar voto</button>
+            </div>
+        </form>
+    </div>
+</section>

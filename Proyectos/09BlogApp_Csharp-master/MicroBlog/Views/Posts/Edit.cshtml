@@ -1,0 +1,42 @@
+@model MicroBlog.Models.Post
+
+@{
+    ViewData["Title"] = "Editar Post";
+}
+
+<h2 class="text-warning mb-4">Editar post</h2>
+
+<div class="card bg-dark text-light shadow-lg">
+    <div class="card-body">
+        <form asp-action="Edit">
+            <input type="hidden" asp-for="Id" />
+
+            <div class="mb-3">
+                <label  class="form-label text-info">Titulo</label>
+                <input asp-for="Title" class="form-control bg-dark text-light border-secondary" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label  class="form-label text-info">Autor</label>
+                <input asp-for="Author" class="form-control bg-dark text-light border-secondary" />
+                <span asp-validation-for="Author" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label  class="form-label text-info">Contenido</label>
+                <textarea asp-for="Content" rows="5" class="form-control bg-dark text-light border-secondary"></textarea>
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label  class="form-label text-info">Fecha</label>
+                <input asp-for="Date" type="date" class="form-control bg-dark text-light border-secondary" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-warning">Actualizar</button>
+            <a asp-action="Index" class="btn btn-secondary ms-2">Cancelar</a>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+@model EncuestasApp.Models.Encuesta
+
+<section class="section">
+    <div class="container">
+        <h1 class="title has-text-light">Crear nueva encuesta</h1>
+
+        <form asp-action="Create" method="post">
+            <div class="field">
+                <label class="label has-text-light">Título de la encuesta</label>
+                <div class="control">
+                    <input asp-for="Titulo" class="input" />
+                </div>
+                <p class="help is-danger">
+                    <span asp-validation-for="Titulo"></span>
+                </p>
+            </div>
+
+            <h4 class="subtitle has-text-light">Opciones</h4>
+            <div id="opciones">
+                <input type="text" name="opciones" class="input mb-2" placeholder="Opción 1" />
+                <input type="text" name="opciones" class="input mb-2" placeholder="Opción 2" />
+            </div>
+
+            <div class="control mt-3">
+                <button type="button" class="button is-link" onclick="agregarOpcion()">Agregar opción</button>
+                <button type="submit" class="button is-primary">Guardar encuesta</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<script>
+    function agregarOpcion() {
+        const div = document.getElementById("opciones");
+        const input = document.createElement("input");
+        input.type = "text";
+        input.name = "opciones";
+        input.className = "input mb-2";
+        input.placeholder = "Nueva opción";
+        div.appendChild(input);
+    }
+</script>

@@ -1,0 +1,23 @@
+@model IEnumerable<WebScraper.Models.Registro>
+
+<h2 class="text-2xl font-bold mb-4">Resultados del Scraping</h2>
+
+<table class="table-auto border-collapse border border-gray-700 w-full text-sm">
+    <thead>
+        <tr class="bg-gray-800 text-red-400">
+            <th class="border border-gray-700 px-4 py-2">Título</th>
+            <th class="border border-gray-700 px-4 py-2">URL</th>
+            <th class="border border-gray-700 px-4 py-2">Fecha</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var registro in Model)
+        {
+            <tr class="hover:bg-gray-800">
+                <td class="border border-gray-700 px-4 py-2">@registro.Titulo</td>
+                <td class="border border-gray-700 px-4 py-2">@registro.Url</td>
+                <td class="border border-gray-700 px-4 py-2">@registro.Fecha</td>
+            </tr>
+        }
+    </tbody>
+</table>

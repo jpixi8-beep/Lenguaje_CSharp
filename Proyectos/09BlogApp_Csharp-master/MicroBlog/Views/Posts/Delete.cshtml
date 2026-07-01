@@ -1,0 +1,35 @@
+@model MicroBlog.Models.Post
+
+@{
+    ViewData["Title"] = "Eliminar Post";
+}
+
+<h2 class="text-danger mb-4">Eliminar post</h2>
+
+<div class="card bg-dark text-light shadow-lg">
+    <div class="card-body">
+        <h4 class="text-warning">¿Estás seguro que quieres eliminar este post?</h4>
+        <hr class="border-secondary" />
+
+        <dl class="row">
+            <dt class="col-sm-3">Título</dt>
+            <dd class="col-sm-9">@Model.Title</dd>
+
+            <dt class="col-sm-3">Autor</dt>
+            <dd class="col-sm-9">@Model.Author</dd>
+
+            <dt class="col-sm-3">Fecha</dt>
+            <dd class="col-sm-9">@Model.Date.ToString("dd/MM/yyyy")</dd>
+
+            <dt class="col-sm-3">Contenido</dt>
+            <dd class="col-sm-9">@Model.Content</dd>
+        </dl>
+    </div>
+    <div class="card-footer border-secondary">
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+            <a asp-action="Index" class="btn btn-secondary ms-2">Cancelar</a>
+        </form>
+    </div>
+</div>s

@@ -1,0 +1,23 @@
+@{
+    ViewData["Title"] = "Web Scraper";
+}
+
+<h2 class="text-2xl font-bold mb-4">Web Scraper</h2>
+
+<p class="mb-4 text-gray-300">
+    Esta herramienta realiza <strong>scraping de títulos (etiquetas &lt;h2&gt;)</strong> 
+    de la página que ingreses. Los resultados se guardan en la base de datos y se muestran abajo.
+     Nota: Este scraper funciona correctamente en páginas HTML simples.  
+    Puede fallar en sitios que usan frameworks modernos (React, Angular, Vue)  
+    o en páginas con código ofuscado/escondido que cargan contenido dinámicamente.
+
+</p>
+
+<form method="post" asp-action="Resultados" class="space-x-2">
+    <input type="text" name="url" placeholder="Ingresa la URL" 
+           class="bg-gray-800 text-white border border-gray-600 p-2 w-96 rounded" />
+    <button type="submit" 
+            class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded">
+        Scrapear
+    </button>
+</form>

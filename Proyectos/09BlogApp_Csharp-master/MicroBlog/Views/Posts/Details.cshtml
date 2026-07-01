@@ -1,0 +1,20 @@
+@model MicroBlog.Models.Post
+
+@{
+    ViewData["Title"] = "Detalles del Post";
+}
+
+<div class="card bg-dark text-light shadow-lg mb-4">
+    <div class="card-header border-secondary">
+        <h3 class="card-title text-info">@Model.Title</h3>
+        <small class="text-muted">por @Model.Author — @Model.Date.ToString("dd/MM/yyyy")</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fs-5">@Model.Content</p>
+    </div>
+    <div class="card-footer border-secondary">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning me-2">Editar</a>
+        <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger me-2">Eliminar</a>
+        <a asp-action="Index" class="btn btn-secondary">Volver</a>
+    </div>
+</div>

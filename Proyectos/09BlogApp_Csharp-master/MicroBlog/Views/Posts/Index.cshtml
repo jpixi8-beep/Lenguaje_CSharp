@@ -1,0 +1,35 @@
+@model IEnumerable<MicroBlog.Models.Post>
+
+@{
+    ViewData["Title"] = "Posts";
+}
+
+<h2 class="text-info mb-4">MicroBlog</h2>
+
+<table class="table table-dark table-hover table-striped align-middle">
+    <thead class="table-secondary">
+        <tr>
+            <th>Título</th>
+            <th>Autor</th>
+            <th>Fecha</th>
+            <th style="width: 200px;">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var post in Model)
+    {
+        <tr>
+            <td>@post.Title</td>
+            <td>@post.Author</td>
+            <td>@post.Date.ToString("dd/MM/yyyy")</td>
+            <td>
+                <a asp-action="Details" asp-route-id="@post.Id" class="btn btn-sm btn-info me-1">Ver</a>
+                <a asp-action="Edit" asp-route-id="@post.Id" class="btn btn-sm btn-warning me-1">Editar</a>
+                <a asp-action="Delete" asp-route-id="@post.Id" class="btn btn-sm btn-danger">Eliminar</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<a asp-action="Create" class="btn btn-success mt-3">➕ Nuevo Post</a>

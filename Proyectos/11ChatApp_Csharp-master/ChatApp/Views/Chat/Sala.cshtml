@@ -1,0 +1,52 @@
+@using ChatApp.Models
+@model IEnumerable<Mensaje>
+
+<section class="section">
+    <div class="container">
+        <h1 class="title has-text-light">Sala de Chat</h1>
+
+        <!-- Mensajes históricos -->
+        <div id="mensajes" class="box has-background-dark has-text-light" style="height:300px; overflow-y:auto;">
+            @foreach (var msg in Model)
+            {
+                <p><strong>@msg.Fecha.ToString("HH:mm") @msg.Usuario:</strong> @msg.Texto</p>
+            }
+        </div>
+
+        <!-- Entrada de usuario -->
+        <div class="field">
+            <input id="usuario" class="input" placeholder="Tu nombre" />
+        </div>
+        <div class="field has-addons">
+            <input id="mensaje" class="input" placeholder="Escribe un mensaje..." />
+            <button id="enviar" class="button is-success">Enviar</button>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+    <script>
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl("/chatHub")
+            .build();
+
+        connection.on("RecibirMensaje", (usuario, mensaje, hora) => {
+            const div = document.getElementById("mensajes");
+            div.innerHTML += `<p><strong>${hora} ${usuario}:</strong> ${mensaje}</p>`;
+            div.scrollTop = div.scrollHeight;
+        });
+
+        connection.start().catch(err => console.error(err));
+
+        document.getElementById("enviar").addEventListener("click", () => {
+            const usuario = document.getElementById("usuario").value;
+            const mensaje = document.getElementById("mensaje").value;
+            if (usuario && mensaje) {
+                connection.invoke("EnviarMensaje", usuario, mensaje)
+                    .catch(err => console.error(err));
+                document.getElementById("mensaje").value = "";
+            }
+        });
+    </script>
+}

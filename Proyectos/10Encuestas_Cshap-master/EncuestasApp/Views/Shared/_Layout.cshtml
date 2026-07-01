@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html lang="es" class="has-background-dark has-text-light">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - EncuestasApp</title>
+
+    <!-- Bulma CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+
+    <!-- Sección para estilos adicionales -->
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body class="has-background-dark has-text-light">
+
+    <!-- Navbar -->
+    <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item has-text-light" asp-controller="Encuestas" asp-action="Index">
+                📊 EncuestasApp
+            </a>
+        </div>
+
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item has-text-light" asp-controller="Encuestas" asp-action="Index">Inicio</a>
+                <a class="navbar-item has-text-light" asp-controller="Encuestas" asp-action="Create">Crear Encuesta</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <section class="section">
+        <div class="container">
+            @RenderBody()
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer has-background-dark has-text-light">
+        <div class="content has-text-centered">
+            <p>
+                <strong>EncuestasApp</strong> por <span class="has-text-info">LechuDev 🌱🔥</span>.
+                Proyecto 10 del portafolio 2026.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

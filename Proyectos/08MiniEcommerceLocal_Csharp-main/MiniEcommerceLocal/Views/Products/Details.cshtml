@@ -1,0 +1,26 @@
+@model MiniEcommerce.Models.Product
+
+@{
+    ViewData["Title"] = "Detalles del Producto";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <p><strong>Nombre:</strong> @Model.Name</p>
+    <p><strong>Precio:</strong> @Model.Price</p>
+    <p><strong>Stock:</strong> @Model.Stock</p>
+    <p><strong>Imagen:</strong></p>
+    <img src="@Model.ImageUrl" alt="Imagen" width="150" />
+</div>
+
+<form asp-action="AddFromDetails" method="post">
+    <input type="hidden" name="productId" value="@Model.Id" />
+    <div class="form-group">
+        <label>Cantidad</label>
+        <input type="number" name="quantity" value="1" min="1" max="@Model.Stock" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-success">Agregar al carrito</button>
+</form>
+
+<a asp-action="Index" class="btn btn-secondary">Volver</a>

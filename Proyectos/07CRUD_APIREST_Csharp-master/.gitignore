@@ -1,0 +1,29 @@
+# Archivos de compilación
+bin/
+obj/
+
+# Configuración local
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio / VS Code
+.vs/
+.vscode/
+
+# Archivos de base de datos locales
+*.db
+*.sqlite
+*.sqlite3
+
+# Archivos de migraciones generados automáticamente (opcional, si no quieres subirlos)
+Migrations/
+
+# Archivos de logs y temporales
+*.log
+*.tmp
+*.temp
+
+# Archivos de publicación
+publish/

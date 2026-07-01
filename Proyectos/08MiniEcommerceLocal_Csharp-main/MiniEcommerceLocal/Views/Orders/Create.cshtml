@@ -1,0 +1,17 @@
+@model MiniEcommerce.Models.Order
+
+@{
+    ViewData["Title"] = "Confirmación de Compra";
+}
+
+<h2>Compra realizada</h2>
+
+<div class="alert alert-success">
+    <strong>¡Gracias por tu compra!</strong>
+</div>
+
+<p><strong>Fecha:</strong> @Model.Date</p>
+<p><strong>Total:</strong> @Model.Total</p>
+<p><strong>Estado:</strong> @Model.Status</p>
+
+<a asp-controller="Products" asp-action="Index" class="btn btn-primary">Volver a la tienda</a>

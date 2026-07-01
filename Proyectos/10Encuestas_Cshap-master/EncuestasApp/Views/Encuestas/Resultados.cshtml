@@ -1,0 +1,113 @@
+@model EncuestasApp.Models.Encuesta
+
+<section class="section">
+    <div class="container">
+        <h1 class="title has-text-light">Resultados: @Model.Titulo</h1>
+
+     
+        <!-- Tabla de resultados -->
+<div class="table-container">
+    <table class="table is-bordered is-hoverable has-background-dark">
+        <thead>
+            <tr class="has-background-link-dark has-text-light">
+                <th>Opción</th>
+                <th>Votos</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var opcion in Model.Opciones)
+        {
+            <tr>
+                <td class="has-text-light">@opcion.Texto</td>
+                <td class="has-text-info" id="votos-@opcion.Id">@opcion.Votos</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+        <!-- Gráfica -->
+        <div class="box has-background-dark">
+            <canvas id="resultadosChart"></canvas>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- SignalR -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+
+    <script>
+        const ctx = document.getElementById('resultadosChart');
+
+        // Labels y datos iniciales
+        let labels = [
+        @foreach (var opcion in Model.Opciones)
+        {
+            @: "@opcion.Texto",
+        }
+        ];
+
+        let dataValues = [
+        @foreach (var opcion in Model.Opciones)
+        {
+            @: @opcion.Votos,
+        }
+        ];
+
+        let chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+        labels: labels,
+        datasets: [{
+        label: 'Votos',
+        data: dataValues,
+        backgroundColor: [
+        'rgba(54, 162, 235, 0.7)',
+        'rgba(255, 99, 132, 0.7)',
+        'rgba(255, 206, 86, 0.7)',
+        'rgba(75, 192, 192, 0.7)',
+        'rgba(153, 102, 255, 0.7)'
+        ],
+        borderColor: 'rgba(255, 255, 255, 0.9)',
+        borderWidth: 1
+        }]
+        },
+        options: {
+        responsive: true,
+        plugins: {
+        legend: { labels: { color: 'white' } }
+        },
+        scales: {
+        x: { ticks: { color: 'white' } },
+        y: { ticks: { color: 'white' } }
+        }
+        }
+        });
+
+        // Conectar a SignalR
+        const connection = new signalR.HubConnectionBuilder()
+        .withUrl("/encuestaHub")
+        .build();
+
+        // Evento que recibe actualizaciones
+        connection.on("RecibirActualizacion", function (encuestaId) {
+        if (encuestaId === @Model.Id) {
+        // Pedir datos actualizados en JSON
+        fetch(`/api/encuestas/@Model.Id`)
+        .then(response => response.json())
+        .then(json => {
+        // Actualizar tabla y gráfica
+        json.opciones.forEach((opcion, i) => {
+        chart.data.datasets[0].data[i] = opcion.votos;
+        document.getElementById(`votos-${opcion.id}`).innerText = opcion.votos;
+        });
+        chart.update();
+        });
+        }
+        });
+
+        connection.start().catch(err => console.error(err));
+    </script>
+}
